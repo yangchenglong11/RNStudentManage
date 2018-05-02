@@ -10,7 +10,7 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 
 import Input from "../components/Input";
 import Logo from "../components/Logo";
-
+import RegisterPage from "./Register";
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
@@ -102,11 +102,11 @@ export default class LoginPage extends Component {
 
     _onRegisterClick = () => {
         let {navigator} = this.props;
-        /*navigator.push({
+        navigator.push({
             name: "RegisterPage",
             component: RegisterPage,
             config: Navigator.SceneConfigs.PushFromRight
-        })*/
+        })
     };
 
     _onForgetPswClick = () => {
