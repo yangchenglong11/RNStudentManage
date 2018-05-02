@@ -37,15 +37,6 @@ export default class RegisterPage extends Component {
             <View style={styles.container}>
                 <Logo/>
 
-                <Picker
-                    prompt="身份"
-                    style={styles.picker}
-                    selectedValue={this.state.Selected}
-                    onValueChange={(value) => this._onValueChange(value)}>
-                    <Picker.Item label="学生" value="key0"/>
-                    <Picker.Item label="教师" value="key1"/>
-                </Picker>
-
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
                     <Text style={{fontSize: 14}}>用户名</Text>
                     <Input placeHolder="请输入用户名"
@@ -62,6 +53,27 @@ export default class RegisterPage extends Component {
                         <Text style={{fontSize: 14, color: '#ff4258'}}>立即登录</Text>
                     </TouchableOpacity>
                 </View>
+
+                <Picker
+                    prompt="身份"
+                    style={styles.picker}
+                    selectedValue={this.state.Selected}
+                    onValueChange={(value) => this._onValueChange(1,value)}>
+                    <Picker.Item label="学生" value="key0"/>
+                    <Picker.Item label="教师" value="key1"/>
+                </Picker>
+
+                <Picker
+                    mode={'班级'}
+                    style={{width:150}}
+                    selectedValue={this.state.dropdown}
+                    onValueChange={(value)=>this._onValueChange(2,value)}>
+                    <Picker.Item label="软件1501" value="key0" />
+                    <Picker.Item label="软件1502" value="key1" />
+                    <Picker.Item label="软件1503" value="key2" />
+                    <Picker.Item label="软件1504" value="key3" />
+                </Picker>
+
                 <View>
                     <TouchableOpacity
                         activeOpacity={0.8}
@@ -125,9 +137,13 @@ export default class RegisterPage extends Component {
         this.setState({Verification: text});
     };
 
-    _onValueChange = (value) => {
-        this.setState({Selected: value});
-    }
+    _onValueChange = (flag,value) => {
+        if(flag ==1){
+            this.setState({selected:value});
+        }else{
+            this.setState({dropdown:value});
+        }
+    };
 }
 
 const styles = {
