@@ -52,11 +52,8 @@ export default class LoginPage extends Component {
                            type="eye"/>
 
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                        <TouchableOpacity onPress={this._onForgetPswClick} activeOpacity={0.7}>
-                            <Text style={{fontSize: 14}}>忘记密码？</Text>
-                        </TouchableOpacity>
                         <TouchableOpacity onPress={this._onRegisterClick} activeOpacity={0.7}>
-                            <Text style={{fontSize: 14, color: "#ff4258"}}>"立即注册"</Text>
+                            <Text style={{fontSize: 14, color: "#ff4258"}}>立即注册</Text>
                         </TouchableOpacity>
 
                     </View>
