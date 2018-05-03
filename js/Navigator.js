@@ -7,7 +7,7 @@ import {isAndroid} from "./util/system";
 import {Styles} from './style/default';
 import {Events} from "./util/events";
 import MyScene from "./CustomSceneConfigs";
-import Login from './pages/Teacher';
+import Login from './pages/StudentMain';
 
 export default class FrameWork extends React.Component {
     constructor(props) {
@@ -71,7 +71,7 @@ export default class FrameWork extends React.Component {
 
     onBackAndroid() {
         const nav = this.navigator;
-        if (nav && nav.getCurrentRoutes().length > 2) {
+        if (nav && nav.getCurrentRoutes().length >= 2) {
             nav.pop();
             return true; //返回 true 表示消费该事件
         }

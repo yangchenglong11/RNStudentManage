@@ -1,20 +1,19 @@
 "use strict";
 
 import React, {Component} from "react";
-import {View, Image, TextInput, TouchableOpacity, Text, Picker} from "react-native";
+import {View, Image, TextInput, TouchableOpacity, Text, Picker, Navigator} from "react-native";
 import {screenScaleWidth} from "../util/system";
 import {isAndroid} from "../util/system";
 import Toast, {DURATION} from 'react-native-easy-toast';
-
+import PersonInfoPage from "./PersonInfo"
 import Input from '../components/Input';
-import Logo from '../components/Logo';
 
 import RealmOperation from "../util/realmOperation";
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
 
-export default class RegisterPage extends Component {
+export default class StudentPage extends Component {
     constructor(props) {
         super(props);
 
@@ -24,6 +23,8 @@ export default class RegisterPage extends Component {
             Verification: "",
             Selected: ""
         };
+
+        this._onMyInfoBtnClick = this._onMyInfoBtnClick.bind(this);
     }
 
     render() {
@@ -34,6 +35,7 @@ export default class RegisterPage extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.loginBtn}
+                    onPress={this._onMyInfoBtnClick}
                   >
                     <View>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>我的信息</Text>
@@ -43,6 +45,7 @@ export default class RegisterPage extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.loginBtn}
+                    onPress={this._onMateInfoBtnClick}
                 >
                     <View>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>同学信息</Text>
@@ -70,6 +73,25 @@ export default class RegisterPage extends Component {
             </View>
         )
     }
+
+    _onMyInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "PersonInfo",
+            component: PersonInfoPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
+    _onMateInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "PersonInfo",
+            component: PersonInfoPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
 }
 
 const styles = {
