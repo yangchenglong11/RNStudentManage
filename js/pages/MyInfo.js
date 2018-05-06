@@ -13,14 +13,16 @@ import Input from "../components/Input";
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
 
-export default class PersonInfoPage extends Component {
+export default class MyInfoPage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            IdText: "",
-            PswText: "",
+            IdText: "小红",
+            ClassText: "计科1402",
             toastVisible: false,
+            stuNumber: "201409020125",
+            phone:"18723434532",
             errMsg: ""
         };
         this._onLoginBtnClick = this._onLoginBtnClick.bind(this);
@@ -38,17 +40,32 @@ export default class PersonInfoPage extends Component {
             <View style={styles.container}>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>用户名</Text>
-                    <Input placeHolder="用户名"
+                    <Input placeHolder="小红"
                            style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.IdText}/>
                 </View>
                 <View style={{ flexDirection: "row"}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>班级</Text>
-                    <Input placeHolder="班级"
+                    <Input placeHolder={this.state.ClassText}
                            onTextChange={(text) => this._onIdChange(text)}
-                           type="delete" textContent={this.state.IdText}/>
+                           type="delete" textContent={this.state.ClassText}/>
                 </View>
+                <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
+                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>学号</Text>
+                    <Input placeHolder={this.state.stuNumber}
+                           style = {{width:40}}
+                           onTextChange={(text) => this._onIdChange(text)}
+                           type="delete" textContent={this.state.stuNumber}/>
+                </View>
+                <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
+                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>手机</Text>
+                    <Input placeHolder={this.state.phone}
+                           style = {{width:40}}
+                           onTextChange={(text) => this._onIdChange(text)}
+                           type="delete" textContent={this.state.phone}/>
+                </View>
+
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.loginBtn}
@@ -68,7 +85,7 @@ export default class PersonInfoPage extends Component {
     }
 
     _onLoginBtnClick() {
-        if (this.state.PswText.length < 6 || this.state.PswText.length > 64) {
+        if (this.state.ClassText.length < 6 || this.state.ClassText.length > 64) {
             this.refs.toast.show("密码长度不小于6位", DURATION.LENGTH_LONG);
             return
         }
@@ -83,18 +100,9 @@ export default class PersonInfoPage extends Component {
 
         let personalInfo = {
             mobile: this.state.IdText,
-            password: this.state.PswText
+            password: this.state.ClassText
         };
 
-    };
-
-    _onRegisterClick = () => {
-        let {navigator} = this.props;
-        navigator.push({
-            name: "RegisterPage",
-            component: RegisterPage,
-            config: Navigator.SceneConfigs.PushFromRight
-        })
     };
 
     _onIdChange = (text) => {
@@ -102,7 +110,7 @@ export default class PersonInfoPage extends Component {
     };
 
     _onPswChange = (text) => {
-        this.setState({PswText: text});
+        this.setState({ClassText: text});
     }
 }
 

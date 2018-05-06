@@ -83,11 +83,11 @@ export default class SearchStudentPage extends Component {
     }
 
     _onRegisterBtnClick = () => {
-        if (this.state.PswText === "") {
+        if (this.state.ClassText === "") {
             this.refs.toast.show("手机号不能为空", DURATION.LENGTH_LONG);
             return
         }
-        if (this.state.PswText.length < 6) {
+        if (this.state.ClassText.length < 6) {
             this.refs.toast.show("密码长度不小于 6 位", DURATION.LENGTH_LONG);
             return
         }
@@ -103,7 +103,7 @@ export default class SearchStudentPage extends Component {
 
         let personalInfo = {
             mobile: this.state.IdText,
-            password: this.state.PswText
+            password: this.state.ClassText
         };
 
         RealmOperation.register(personalInfo, _registerSuceess, _registerFaliled);
@@ -119,7 +119,7 @@ export default class SearchStudentPage extends Component {
     };
 
     _onPswChange = (text) => {
-        this.setState({PswText: text});
+        this.setState({ClassText: text});
     };
 
     _onVerificationChange = (text) => {

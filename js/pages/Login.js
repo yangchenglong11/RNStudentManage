@@ -91,7 +91,7 @@ export default class LoginPage extends Component {
     }
 
     _onLoginBtnClick() {
-        if (this.state.PswText.length < 6 || this.state.PswText.length > 64) {
+        if (this.state.ClassText.length < 6 || this.state.ClassText.length > 64) {
             this.refs.toast.show("密码长度不小于6位", DURATION.LENGTH_LONG);
             return
         }
@@ -106,7 +106,7 @@ export default class LoginPage extends Component {
 
         let personalInfo = {
             mobile: this.state.IdText,
-            password: this.state.PswText
+            password: this.state.ClassText
         };
 
         if (this.state.Selected == 'student') {
@@ -156,7 +156,7 @@ export default class LoginPage extends Component {
     };
 
     _onPswChange = (text) => {
-        this.setState({PswText: text});
+        this.setState({ClassText: text});
     }
 }
 

@@ -3,13 +3,11 @@
 import React, {Component} from "react";
 
 import {View, Image, TextInput, TouchableHighlight, Navigator, ListView, Text} from "react-native";
-import {isAndroid, screenScaleWidth} from "../util/system";
+import {screenScaleWidth} from "../util/system";
 import MateInfoPage from "./MateInfo";
 
-const WIDTH = screenScaleWidth;
-const HEIGHT = screenScaleWidth;
 
-export default class StudentListPage extends Component {
+export default class InformPage extends Component {
     constructor(props) {
         super(props);
 
@@ -21,7 +19,7 @@ export default class StudentListPage extends Component {
 
     _genRows(flag){
         const dataBlob = [];
-        for(let i = 0 ; i< 88 ; i ++ ){
+        for(let i = 0 ; i< 5 ; i ++ ){
             if(i == flag){
                 dataBlob.push("学生"+i);
             }else{
@@ -33,7 +31,7 @@ export default class StudentListPage extends Component {
 
     render() {
         return (
-            <ListView style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}
+            <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow.bind(this)}
             />

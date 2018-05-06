@@ -5,8 +5,8 @@ import {View, Image, TextInput, TouchableOpacity, Text, Picker, Navigator} from 
 import {screenScaleWidth} from "../util/system";
 import {isAndroid} from "../util/system";
 import Toast, {DURATION} from 'react-native-easy-toast';
-import PersonInfoPage from "./PersonInfo"
-import Input from '../components/Input';
+import MyInfoPage from "./MyInfo"
+import StudentListPage from "./StudentList"
 
 import RealmOperation from "../util/realmOperation";
 
@@ -25,6 +25,7 @@ export default class StudentPage extends Component {
         };
 
         this._onMyInfoBtnClick = this._onMyInfoBtnClick.bind(this);
+        this._onMateInfoBtnClick = this._onMateInfoBtnClick.bind(this);
     }
 
     render() {
@@ -77,8 +78,8 @@ export default class StudentPage extends Component {
     _onMyInfoBtnClick = () => {
         let {navigator} = this.props;
         navigator.push({
-            name: "PersonInfo",
-            component: PersonInfoPage,
+            name: "MyInfo",
+            component: MyInfoPage,
             config: Navigator.SceneConfigs.PushFromRight
         })
     };
@@ -86,8 +87,8 @@ export default class StudentPage extends Component {
     _onMateInfoBtnClick = () => {
         let {navigator} = this.props;
         navigator.push({
-            name: "PersonInfo",
-            component: PersonInfoPage,
+            name: "StudentList",
+            component: StudentListPage,
             config: Navigator.SceneConfigs.PushFromRight
         })
     };
@@ -125,8 +126,9 @@ const styles = {
     },
 
     loginBtn: {
-        height: HEIGHT(80),
-        backgroundColor: "#ff4258",
+        width:608,
+        height: HEIGHT(96),
+        backgroundColor: "#39b5ff",
         justifyContent: "center",
         alignItems: 'center',
         marginTop: HEIGHT(30),
