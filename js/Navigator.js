@@ -7,7 +7,7 @@ import {isAndroid} from "./util/system";
 import {Styles} from './style/default';
 import {Events} from "./util/events";
 import MyScene from "./CustomSceneConfigs";
-import Login from './pages/StudentMain';
+import Login from './pages/login';
 
 export default class FrameWork extends React.Component {
     constructor(props) {

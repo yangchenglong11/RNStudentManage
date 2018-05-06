@@ -36,17 +36,18 @@ export default class PersonInfoPage extends Component {
         let {userName} = this.props;
         return (
             <View style={styles.container}>
-                <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
-                    <Text style={{fontSize: 14}}>用户名</Text>
+                <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
+                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>用户名</Text>
                     <Input placeHolder="用户名"
+                           style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.IdText}/>
                 </View>
-                <View>
-                    <Text style={{fontSize: 14}}>班级</Text>
+                <View style={{ flexDirection: "row"}}>
+                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>班级</Text>
                     <Input placeHolder="班级"
-                           onTextChange={(text) => this._onPswChange(text)}
-                           type="eye"/>
+                           onTextChange={(text) => this._onIdChange(text)}
+                           type="delete" textContent={this.state.IdText}/>
                 </View>
                 <TouchableOpacity
                     activeOpacity={0.8}

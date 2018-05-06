@@ -66,6 +66,15 @@ export default class StudentPage extends Component {
                     style={styles.loginBtn}
                 >
                     <View>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>成绩</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.loginBtn}
+                >
+                    <View>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>班级信息</Text>
                     </View>
                 </TouchableOpacity>

@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {TouchableOpacity, StyleSheet, Image, View} from "react-native";
-import {Icon} from "native-base";
-import {Utils,} from "../util/system";
 
-const WIDTH = Utils.screenScaleWidth;
-const HEIGHT = Utils.screenScaleWidth;
+import {screenScaleWidth} from "../util/system";
+
+const WIDTH = screenScaleWidth;
+const HEIGHT = screenScaleWidth;
 
 export default class Check extends Component {
   static defaultProps = {
@@ -43,7 +43,7 @@ export default class Check extends Component {
         <View style={styles.checkBox}>
           {
             this.state.checked ?
-              <Icon name="ios-checkmark-circle" style={{color:"#ff4258",fontSize:24}} />
+              <Image source={require("../../images/check.jpg")} style={{width:40,height:40}} />
               :
               <View
                 style={styles.unSelect} />

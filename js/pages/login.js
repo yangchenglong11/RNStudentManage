@@ -2,7 +2,7 @@
 
 import React, {Component} from "react";
 
-import {View, Image, TextInput, TouchableOpacity, Navigator, ToastAndroid, Text} from "react-native";
+import {View, Image, TextInput, TouchableOpacity, Navigator, ToastAndroid, Text,Picker} from "react-native";
 import {screenScaleWidth} from "../util/system";
 
 import {isAndroid} from "../util/system";
@@ -11,6 +11,8 @@ import Toast, {DURATION} from 'react-native-easy-toast';
 import Input from "../components/Input";
 import Logo from "../components/Logo";
 import RegisterPage from "./Register";
+import StudentMain from "./StudentMain"
+import TeacherMain from "./TeacherMain"
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
@@ -23,11 +25,13 @@ export default class LoginPage extends Component {
             IdText: "",
             PswText: "",
             toastVisible: false,
-            errMsg: ""
+            errMsg: "",
+            Selected: "stu"
         };
         this._onLoginBtnClick = this._onLoginBtnClick.bind(this);
         this._onIdChange = this._onIdChange.bind(this);
         this._onPswChange = this._onPswChange.bind(this);
+        this._onValueChange = this._onValueChange.bind(this);
     }
 
     componentWillMount() {
@@ -39,6 +43,16 @@ export default class LoginPage extends Component {
         return (
             <View style={styles.container}>
                 <Logo/>
+
+                <Picker
+                    prompt="身份"
+                    style={styles.picker}
+                    selectedValue={this.state.Selected}
+                    onValueChange={(value) => this._onValueChange(value)}>
+                    <Picker.Item label="学生" value= "stu"/>
+                    <Picker.Item label="教师" value="tea"/>
+                </Picker>
+
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
                     <Text style={{fontSize: 14}}>用户名</Text>
                     <Input placeHolder="请输入用户名"
@@ -95,6 +109,22 @@ export default class LoginPage extends Component {
             password: this.state.PswText
         };
 
+        if (this.state.Selected === "stu") {
+            let {navigator} = this.props;
+            navigator.push({
+                name: "StudentMain",
+                component: StudentMain,
+                config: Navigator.SceneConfigs.PushFromRight
+            })
+        }
+
+        let {navigator} = this.props;
+        navigator.push({
+            name: "TeacherMain",
+            component: TeacherMain,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+
     };
 
     _onRegisterClick = () => {
@@ -104,6 +134,11 @@ export default class LoginPage extends Component {
             component: RegisterPage,
             config: Navigator.SceneConfigs.PushFromRight
         })
+    };
+
+    _onValueChange = (value) => {
+        this.setState({selected:value});
+
     };
 
     _onForgetPswClick = () => {
@@ -146,6 +181,10 @@ const styles = {
         fontSize: 14,
         color: "#999",
         paddingTop: HEIGHT(10)
+    },
+
+    picker: {
+        width: 100,
     },
 
     weChat: {
