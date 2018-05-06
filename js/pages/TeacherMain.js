@@ -58,6 +58,16 @@ export default class TeacherPage extends Component {
                     </View>
                 </TouchableOpacity>
 
+
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.loginBtn}
+                >
+                    <View>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>成绩</Text>
+                    </View>
+                </TouchableOpacity>
+
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.loginBtn}

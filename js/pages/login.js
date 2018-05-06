@@ -26,7 +26,7 @@ export default class LoginPage extends Component {
             PswText: "",
             toastVisible: false,
             errMsg: "",
-            Selected: "stu"
+            Selected: "student"
         };
         this._onLoginBtnClick = this._onLoginBtnClick.bind(this);
         this._onIdChange = this._onIdChange.bind(this);
@@ -49,8 +49,8 @@ export default class LoginPage extends Component {
                     style={styles.picker}
                     selectedValue={this.state.Selected}
                     onValueChange={(value) => this._onValueChange(value)}>
-                    <Picker.Item label="学生" value= "stu"/>
-                    <Picker.Item label="教师" value="tea"/>
+                    <Picker.Item label="学生" value="student"/>
+                    <Picker.Item label="教师" value="teacher"/>
                 </Picker>
 
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
@@ -109,21 +109,22 @@ export default class LoginPage extends Component {
             password: this.state.PswText
         };
 
-        if (this.state.Selected === "stu") {
+        if (this.state.Selected == 'student') {
             let {navigator} = this.props;
             navigator.push({
                 name: "StudentMain",
                 component: StudentMain,
                 config: Navigator.SceneConfigs.PushFromRight
             })
+        } else {
+            let {navigator} = this.props;
+            navigator.push({
+                name: "TeacherMain",
+                component: TeacherMain,
+                config: Navigator.SceneConfigs.PushFromRight
+            })
         }
 
-        let {navigator} = this.props;
-        navigator.push({
-            name: "TeacherMain",
-            component: TeacherMain,
-            config: Navigator.SceneConfigs.PushFromRight
-        })
 
     };
 
@@ -137,7 +138,7 @@ export default class LoginPage extends Component {
     };
 
     _onValueChange = (value) => {
-        this.setState({selected:value});
+        this.setState({Selected:value});
 
     };
 
