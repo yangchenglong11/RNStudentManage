@@ -3,9 +3,11 @@
 import React, {Component} from "react";
 
 import {View, Image, TextInput, TouchableHighlight, Navigator, ListView, Text} from "react-native";
-import {screenScaleWidth} from "../util/system";
+import {isAndroid, screenScaleWidth} from "../util/system";
 import DetailInformPage from "./DetailInform";
 
+const WIDTH = screenScaleWidth;
+const HEIGHT = screenScaleWidth;
 
 export default class InformPage extends Component {
     constructor(props) {
@@ -32,6 +34,7 @@ export default class InformPage extends Component {
     render() {
         return (
             <ListView
+                style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow.bind(this)}
             />
@@ -46,8 +49,8 @@ export default class InformPage extends Component {
             >
                 <View>
                     <View style={styles.row}>
-                        <Image style={{width:40,height:40}} source={require('../../images/splash.jpg')}/>
-                        <Text style={{flex:1,fontSize:20,marginLeft:20}}>
+                        <Image style={{width:40,height:40}} source={require('../../images/inform.png')}/>
+                        <Text style={{flex:1,height:45,fontSize:27,marginLeft:10,backgroundColor:"#e4e8ff"}}>
                             {rowData}
                         </Text>
                     </View>
@@ -76,12 +79,12 @@ const styles = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#f8fffd',
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems:'center',
-        padding: 10,
+        padding: 3,
     },
 };

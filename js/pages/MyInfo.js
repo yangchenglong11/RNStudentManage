@@ -18,7 +18,7 @@ export default class MyInfoPage extends Component {
         super(props);
 
         this.state = {
-            IdText: "小红",
+            IdText: "XX",
             ClassText: "计科1402",
             toastVisible: false,
             stuNumber: "201409020125",
@@ -45,7 +45,7 @@ export default class MyInfoPage extends Component {
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.IdText}/>
                 </View>
-                <View style={{ flexDirection: "row"}}>
+                <View style={{ marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90),flexDirection: "row"}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>班级</Text>
                     <Input placeHolder={this.state.ClassText}
                            onTextChange={(text) => this._onIdChange(text)}

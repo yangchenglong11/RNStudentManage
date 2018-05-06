@@ -18,7 +18,7 @@ export default class MateInfoPage extends Component {
         super(props);
 
         this.state = {
-            IdText: "小龙",
+            IdText: "XXX",
             ClassText: "计科1402",
             toastVisible: false,
             errMsg: ""

@@ -32,48 +32,56 @@ export default class StudentPage extends Component {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',
-                }}>
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.title}>
+                        班级信息管理系统
+                    </Text>
+                </View>
+                <View>
+                    <Text style={styles.subTitle}>
+                        班级 姓名
+                    </Text>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onMyInfoBtnClick}>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                    onPress={this._onMyInfoBtnClick}
-                  >
-                    <View>
+                        <Image source={require('../../images/user.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>我的信息</Text>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                    onPress={this._onMateInfoBtnClick}
-                >
-                    <View>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onMateInfoBtnClick}
+                    >
+                        <Image source={require('../../images/mate.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>同学信息</Text>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                    onPress={this._onInformInfoBtnClick}
-                >
-                    <View>
-                        <Text style={{fontSize: 17, color: '#ffffff'}}>公告</Text>
-                    </View>
-                </TouchableOpacity>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                >
-                    <View>
-                        <Text style={{fontSize: 17, color: '#ffffff'}}>班级信息</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.row}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onInformInfoBtnClick}
+                    >
+                        <Image source={require('../../images/inform.png')} style={styles.image}/>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>我的信息</Text>
+                    </TouchableOpacity>
 
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                    >
+                        <Image source={require('../../images/grade.png')} style={styles.image}/>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>同学ddddd信息</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -110,22 +118,8 @@ export default class StudentPage extends Component {
 const styles = {
     container: {
         alignItems: "center",
-        paddingTop: isAndroid() ? HEIGHT(90) : HEIGHT(102),
+        paddingTop: isAndroid() ? HEIGHT(60) : HEIGHT(80),
         backgroundColor: '#f8f8f8'
-    },
-
-    input: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: "#efefef",
-        width: WIDTH(608),
-        height: HEIGHT(76),
-        borderRadius: WIDTH(6),
-        marginTop: HEIGHT(20),
-        marginBottom: HEIGHT(30),
-        paddingLeft: WIDTH(24),
-        paddingRight: WIDTH(24)
     },
 
     delete: {
@@ -133,18 +127,39 @@ const styles = {
         width: WIDTH(34)
     },
 
-    picker: {
-        width: 100,
+    title: {
+        justifyContent: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
+        padding: 10,
     },
 
-    loginBtn: {
-        width:608,
-        height: HEIGHT(96),
+    subTitle: {
+        justifyContent: 'center',
+        fontSize: 18,
+        marginBottom: 10,
+    },
+
+    row: {
+        position: 'relative',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+
+    gridItem: {
+        height: 250,
         backgroundColor: "#39b5ff",
-        justifyContent: "center",
+        width: 250,
+        margin: 10,
+        borderRadius: 10,
+        padding: 5,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: HEIGHT(30),
-        marginBottom: HEIGHT(1),
-        borderRadius: HEIGHT(6)
+    },
+
+    image: {
+        width: 180,
+        height: 180,
+        marginBottom: 20,
     }
 };

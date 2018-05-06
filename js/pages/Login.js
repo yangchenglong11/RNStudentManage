@@ -142,15 +142,6 @@ export default class LoginPage extends Component {
 
     };
 
-    _onForgetPswClick = () => {
-        let {navigator} = this.props;
-        /*navigator.push({
-            name: "ForgetPswPage",
-            component: ForgetPswPage,
-            config: Navigator.SceneConfigs.PushFromRight
-        })*/
-    };
-
     _onIdChange = (text) => {
         this.setState({IdText: text});
     };

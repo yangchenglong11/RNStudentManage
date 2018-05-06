@@ -5,7 +5,10 @@ import {
     Text,
     View
 } from 'react-native';
+import {isAndroid, screenScaleWidth} from "../util/system";
 
+const WIDTH = screenScaleWidth;
+const HEIGHT = screenScaleWidth;
 export default class DetailInformPage extends Component {
     render() {
         return (
@@ -43,6 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     title_view:{
+        marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90),
         flexDirection:'row',
         height:50,
         justifyContent: 'center',
