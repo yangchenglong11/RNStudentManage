@@ -7,6 +7,7 @@ import {isAndroid} from "../util/system";
 import Toast, {DURATION} from 'react-native-easy-toast';
 import MyInfoPage from "./MyInfo"
 import StudentListPage from "./StudentList"
+import InformInfoPage from "./Inform"
 
 import RealmOperation from "../util/realmOperation";
 
@@ -26,6 +27,7 @@ export default class StudentPage extends Component {
 
         this._onMyInfoBtnClick = this._onMyInfoBtnClick.bind(this);
         this._onMateInfoBtnClick = this._onMateInfoBtnClick.bind(this);
+        this._onInformInfoBtnClick = this._onInformInfoBtnClick.bind(this);
     }
 
     render() {
@@ -56,6 +58,7 @@ export default class StudentPage extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={styles.loginBtn}
+                    onPress={this._onInformInfoBtnClick}
                 >
                     <View>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>公告</Text>
@@ -89,6 +92,15 @@ export default class StudentPage extends Component {
         navigator.push({
             name: "StudentList",
             component: StudentListPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
+    _onInformInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "InformInfo",
+            component: InformInfoPage,
             config: Navigator.SceneConfigs.PushFromRight
         })
     };

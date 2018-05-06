@@ -4,7 +4,7 @@ import React, {Component} from "react";
 
 import {View, Image, TextInput, TouchableHighlight, Navigator, ListView, Text} from "react-native";
 import {screenScaleWidth} from "../util/system";
-import MateInfoPage from "./MateInfo";
+import DetailInformPage from "./DetailInform";
 
 
 export default class InformPage extends Component {
@@ -21,9 +21,9 @@ export default class InformPage extends Component {
         const dataBlob = [];
         for(let i = 0 ; i< 5 ; i ++ ){
             if(i == flag){
-                dataBlob.push("学生"+i);
+                dataBlob.push("公告"+i);
             }else{
-                dataBlob.push("学生"+i);
+                dataBlob.push("公告"+i);
             }
         }
         return dataBlob;
@@ -59,8 +59,8 @@ export default class InformPage extends Component {
 
         let {navigator} = this.props;
         navigator.push({
-            name: "MateInfo",
-            component: MateInfoPage,
+            name: "DetailInform",
+            component: DetailInformPage,
             config: Navigator.SceneConfigs.PushFromRight
         })
         // alert(rowData);
