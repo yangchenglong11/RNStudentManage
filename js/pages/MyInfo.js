@@ -40,27 +40,27 @@ export default class MyInfoPage extends Component {
             <View style={styles.container}>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>用户名</Text>
-                    <Input placeHolder="XX"
+                    <Input placeHolder=""
                            style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.IdText}/>
                 </View>
                 <View style={{ marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90),flexDirection: "row"}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>班级</Text>
-                    <Input placeHolder={this.state.ClassText}
+                    <Input placeHolder=""
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.ClassText}/>
                 </View>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>学号</Text>
-                    <Input placeHolder={this.state.stuNumber}
+                    <Input placeHolder=""
                            style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.stuNumber}/>
                 </View>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>手机</Text>
-                    <Input placeHolder={this.state.phone}
+                    <Input placeHolder=""
                            style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.phone}/>

@@ -26,12 +26,14 @@ export default class LoginPage extends Component {
             PswText: "",
             toastVisible: false,
             errMsg: "",
+            Class:"",
             Selected: "student"
         };
         this._onLoginBtnClick = this._onLoginBtnClick.bind(this);
         this._onIdChange = this._onIdChange.bind(this);
         this._onPswChange = this._onPswChange.bind(this);
-        this._onValueChange = this._onValueChange.bind(this);
+        this._onRoleChange = this._onRoleChange.bind(this);
+        this._onClassChange = this._onClassChange.bind(this);
     }
 
     componentWillMount() {
@@ -48,9 +50,20 @@ export default class LoginPage extends Component {
                     prompt="身份"
                     style={styles.picker}
                     selectedValue={this.state.Selected}
-                    onValueChange={(value) => this._onValueChange(value)}>
+                    onValueChange={(value) => this._onRoleChange(value)}>
                     <Picker.Item label="学生" value="student"/>
                     <Picker.Item label="教师" value="teacher"/>
+                </Picker>
+
+                <Picker
+                    mode={'dropdown'}
+                    style={{width:130}}
+                    selectedValue={this.state.Class}
+                    onValueChange={(value)=>this._onClassChange(value)}>
+                    <Picker.Item label="软件1501" value="软件1501" />
+                    <Picker.Item label="软件1502" value="软件1502" />
+                    <Picker.Item label="计科1501" value="计科1501" />
+                    <Picker.Item label="计科1502" value="计科1502" />
                 </Picker>
 
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
@@ -91,7 +104,7 @@ export default class LoginPage extends Component {
     }
 
     _onLoginBtnClick() {
-        if (this.state.IdText.length < 6 || this.state.PswText.length > 64) {
+        if (this.state.PswText.length < 6 || this.state.PswText.length > 64) {
             this.refs.toast.show("密码长度不小于6位", DURATION.LENGTH_LONG);
             return
         }
@@ -136,9 +149,13 @@ export default class LoginPage extends Component {
         })
     };
 
-    _onValueChange = (value) => {
+    _onRoleChange = (value) => {
         this.setState({Selected:value});
 
+    };
+
+    _onClassChange = (value) => {
+        this.setState({Class:value});
     };
 
     _onIdChange = (text) => {
@@ -146,7 +163,7 @@ export default class LoginPage extends Component {
     };
 
     _onPswChange = (text) => {
-        this.setState({ClassText: text});
+        this.setState({PswText: text});
     }
 }
 
@@ -175,7 +192,7 @@ const styles = {
     },
 
     picker: {
-        width: 100,
+        width: 80,
     },
 
     weChat: {

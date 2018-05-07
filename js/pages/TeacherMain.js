@@ -147,9 +147,9 @@ const styles = {
     },
 
     gridItem: {
-        height: 250,
+        height: 160,
         backgroundColor: "#39b5ff",
-        width: 250,
+        width: 160,
         margin: 10,
         borderRadius: 10,
         padding: 5,
@@ -158,8 +158,8 @@ const styles = {
     },
 
     image: {
-        width: 180,
-        height: 180,
-        marginBottom: 20,
+        width: 110,
+        height: 110,
+        marginBottom: 12,
     }
 };

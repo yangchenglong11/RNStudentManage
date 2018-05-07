@@ -71,7 +71,7 @@ export default class StudentMainPage extends Component {
                         onPress={this._onInformInfoBtnClick}
                     >
                         <Image source={require('../../images/inform.png')} style={styles.image}/>
-                        <Text style={{fontSize: 17, color: '#ffffff'}}>我的信息</Text>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>公告</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -79,7 +79,7 @@ export default class StudentMainPage extends Component {
                         style={styles.gridItem}
                     >
                         <Image source={require('../../images/grade.png')} style={styles.image}/>
-                        <Text style={{fontSize: 17, color: '#ffffff'}}>同学ddddd信息</Text>
+                        <Text style={{fontSize: 17, color: '#ffffff'}}>成绩</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -113,6 +113,14 @@ export default class StudentMainPage extends Component {
         })
     };
 
+    _onGradeInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "InformInfo",
+            component: InformInfoPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
 }
 
 const styles = {
@@ -147,9 +155,9 @@ const styles = {
     },
 
     gridItem: {
-        height: 250,
+        height: 160,
         backgroundColor: "#39b5ff",
-        width: 250,
+        width: 160,
         margin: 10,
         borderRadius: 10,
         padding: 5,
@@ -158,8 +166,8 @@ const styles = {
     },
 
     image: {
-        width: 180,
-        height: 180,
-        marginBottom: 20,
+        width: 110,
+        height: 110,
+        marginBottom: 12,
     }
 };

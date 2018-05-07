@@ -46,7 +46,6 @@ export default class MateInfoPage extends Component {
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>手机</Text>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>18723467531</Text>
                 </View>
-
             </View>
         )
     }
