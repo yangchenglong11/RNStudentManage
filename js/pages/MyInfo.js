@@ -40,7 +40,7 @@ export default class MyInfoPage extends Component {
             <View style={styles.container}>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>用户名</Text>
-                    <Input placeHolder="小红"
+                    <Input placeHolder="XX"
                            style = {{width:40}}
                            onTextChange={(text) => this._onIdChange(text)}
                            type="delete" textContent={this.state.IdText}/>

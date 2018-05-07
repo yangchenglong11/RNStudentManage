@@ -6,9 +6,6 @@ import {View, Image, TextInput, TouchableOpacity, Navigator, ToastAndroid, Text}
 import {screenScaleWidth} from "../util/system";
 
 import {isAndroid} from "../util/system";
-import Toast, {DURATION} from 'react-native-easy-toast';
-
-import Input from "../components/Input";
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
@@ -35,7 +32,7 @@ export default class MateInfoPage extends Component {
             <View style={styles.container}>
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90), flexDirection: "row",}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>用户名</Text>
-                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>小龙</Text>
+                    <Text style={{fontSize: 15, textAlignVertical:"center"}}>XXX</Text>
                 </View>
                 <View style={{ flexDirection: "row"}}>
                     <Text style={{fontSize: 15, textAlignVertical:"center"}}>班级</Text>

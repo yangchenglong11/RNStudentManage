@@ -1,20 +1,20 @@
 "use strict";
 
 import React, {Component} from "react";
-import {View, Image, TextInput, TouchableOpacity, Text, Picker} from "react-native";
+import {View, Image, TextInput, TouchableOpacity, Text, Picker, Navigator} from "react-native";
 import {screenScaleWidth} from "../util/system";
 import {isAndroid} from "../util/system";
 import Toast, {DURATION} from 'react-native-easy-toast';
-
-import Input from '../components/Input';
-import Logo from '../components/Logo';
+import MyInfoPage from "./MyInfo"
+import StudentListPage from "./StudentList"
+import InformInfoPage from "./Inform"
 
 import RealmOperation from "../util/realmOperation";
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
 
-export default class TeacherPage extends Component {
+export default class TeacherMainPage extends Component {
     constructor(props) {
         super(props);
 
@@ -24,83 +24,102 @@ export default class TeacherPage extends Component {
             Verification: "",
             Selected: ""
         };
+
+        this._onMyInfoBtnClick = this._onMyInfoBtnClick.bind(this);
+        this._onMateInfoBtnClick = this._onMateInfoBtnClick.bind(this);
+        this._onInformInfoBtnClick = this._onInformInfoBtnClick.bind(this);
     }
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center',
-                }}>
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.title}>
+                        班级信息管理系统
+                    </Text>
+                </View>
+                <View>
+                    <Text style={styles.subTitle}>
+                        班级 姓名
+                    </Text>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onMyInfoBtnClick}>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                  >
-                    <View>
+                        <Image source={require('../../images/user.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>我的信息</Text>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                >
-                    <View>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onMateInfoBtnClick}
+                    >
+                        <Image source={require('../../images/mate.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>同学信息</Text>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                >
-                    <View>
+
+                <View style={styles.row}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                        onPress={this._onInformInfoBtnClick}
+                    >
+                        <Image source={require('../../images/inform.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>公告</Text>
-                    </View>
-                </TouchableOpacity>
+                    </TouchableOpacity>
 
-
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                >
-                    <View>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={styles.gridItem}
+                    >
+                        <Image source={require('../../images/grade.png')} style={styles.image}/>
                         <Text style={{fontSize: 17, color: '#ffffff'}}>成绩</Text>
-                    </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.loginBtn}
-                >
-                    <View>
-                        <Text style={{fontSize: 17, color: '#ffffff'}}>班级信息</Text>
-                    </View>
-                </TouchableOpacity>
-
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
+
+    _onMyInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "MyInfo",
+            component: MyInfoPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
+    _onMateInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "StudentList",
+            component: StudentListPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
+    _onInformInfoBtnClick = () => {
+        let {navigator} = this.props;
+        navigator.push({
+            name: "InformInfo",
+            component: InformInfoPage,
+            config: Navigator.SceneConfigs.PushFromRight
+        })
+    };
+
 }
 
 const styles = {
     container: {
         alignItems: "center",
-        paddingTop: isAndroid() ? HEIGHT(90) : HEIGHT(102),
+        paddingTop: isAndroid() ? HEIGHT(60) : HEIGHT(80),
         backgroundColor: '#f8f8f8'
-    },
-
-    input: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: "#efefef",
-        width: WIDTH(608),
-        height: HEIGHT(76),
-        borderRadius: WIDTH(6),
-        marginTop: HEIGHT(20),
-        marginBottom: HEIGHT(30),
-        paddingLeft: WIDTH(24),
-        paddingRight: WIDTH(24)
     },
 
     delete: {
@@ -108,17 +127,39 @@ const styles = {
         width: WIDTH(34)
     },
 
-    picker: {
-        width: 100,
+    title: {
+        justifyContent: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
+        padding: 10,
     },
 
-    loginBtn: {
-        height: HEIGHT(80),
-        backgroundColor: "#ff4258",
-        justifyContent: "center",
+    subTitle: {
+        justifyContent: 'center',
+        fontSize: 18,
+        marginBottom: 10,
+    },
+
+    row: {
+        position: 'relative',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+
+    gridItem: {
+        height: 250,
+        backgroundColor: "#39b5ff",
+        width: 250,
+        margin: 10,
+        borderRadius: 10,
+        padding: 5,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginTop: HEIGHT(30),
-        marginBottom: HEIGHT(1),
-        borderRadius: HEIGHT(6)
+    },
+
+    image: {
+        width: 180,
+        height: 180,
+        marginBottom: 20,
     }
 };

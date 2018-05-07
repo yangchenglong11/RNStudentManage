@@ -14,7 +14,7 @@ import RealmOperation from "../util/realmOperation";
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
 
-export default class StudentPage extends Component {
+export default class StudentMainPage extends Component {
     constructor(props) {
         super(props);
 
