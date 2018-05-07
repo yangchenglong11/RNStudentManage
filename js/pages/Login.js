@@ -63,7 +63,7 @@ export default class LoginPage extends Component {
                     <Text style={{fontSize: 14}}>密码</Text>
                     <Input placeHolder="请输入密码"
                            onTextChange={(text) => this._onPswChange(text)}
-                           type="eye"/>
+                           type="eye" textContent={this.state.PswText}/>
 
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                         <TouchableOpacity onPress={this._onRegisterClick} activeOpacity={0.7}>
@@ -91,7 +91,7 @@ export default class LoginPage extends Component {
     }
 
     _onLoginBtnClick() {
-        if (this.state.ClassText.length < 6 || this.state.ClassText.length > 64) {
+        if (this.state.IdText.length < 6 || this.state.PswText.length > 64) {
             this.refs.toast.show("密码长度不小于6位", DURATION.LENGTH_LONG);
             return
         }
@@ -124,7 +124,6 @@ export default class LoginPage extends Component {
                 config: Navigator.SceneConfigs.PushFromRight
             })
         }
-
 
     };
 

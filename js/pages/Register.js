@@ -1,7 +1,7 @@
 "use strict";
 
 import React, {Component} from "react";
-import {View, Image, TextInput, TouchableOpacity, Text, Picker} from "react-native";
+import {View, Image, TextInput, TouchableOpacity, Text, Picker, Navigator} from "react-native";
 import {screenScaleWidth} from "../util/system";
 import {isAndroid} from "../util/system";
 import Toast, {DURATION} from 'react-native-easy-toast';
@@ -10,6 +10,8 @@ import Input from '../components/Input';
 import Logo from '../components/Logo';
 
 import RealmOperation from "../util/realmOperation";
+import TeacherMain from "./TeacherMain";
+import StudentMain from "./StudentMain";
 
 const WIDTH = screenScaleWidth;
 const HEIGHT = screenScaleWidth;
@@ -22,7 +24,7 @@ export default class RegisterPage extends Component {
             IdText: "",
             PswText: "",
             Verification: "",
-            Selected: ""
+            Selected: "student"
         };
 
         this._onRegisterBtnClick = this._onRegisterBtnClick.bind(this);
@@ -42,20 +44,22 @@ export default class RegisterPage extends Component {
                     style={styles.picker}
                     selectedValue={this.state.Selected}
                     onValueChange={(value) => this._onValueChange(value)}>
-                    <Picker.Item label="学生" value="key0"/>
-                    <Picker.Item label="教师" value="key1"/>
+                    <Picker.Item label="学生" value="student"/>
+                    <Picker.Item label="教师" value="teacher"/>
                 </Picker>
 
                 <View style={{marginTop: isAndroid() ? HEIGHT(30) : HEIGHT(90)}}>
                     <Text style={{fontSize: 14}}>用户名</Text>
                     <Input placeHolder="请输入用户名"
-                           onTextChange={(text) => this._onIdChange(text)} type="delete"/>
+                           onTextChange={(text) => this._onIdChange(text)} type="delete"
+                           textContent={this.state.IdText}/>
                 </View>
 
                 <View>
                     <Text style={{fontSize: 14}}>密码</Text>
                     <Input placeHolder="请输入密码"
-                           onTextChange={(text) => this._onPswChange(text)} type="eye"/>
+                           onTextChange={(text) => this._onPswChange(text)} type="eye"
+                           textContent={this.state.PswText}/>
 
                     <TouchableOpacity style={{flexDirection: "row", justifyContent: "flex-end"}}
                                       onPress={this._onLoginBtnClick} activeOpacity={0.7}>
@@ -83,12 +87,12 @@ export default class RegisterPage extends Component {
     }
 
     _onRegisterBtnClick = () => {
-        if (this.state.ClassText === "") {
-            this.refs.toast.show("手机号不能为空", DURATION.LENGTH_LONG);
+        if (this.state.IdText == "") {
+            this.refs.toast.show("手机号不能为空", DURATION.LENGTH_SHORT);
             return
         }
-        if (this.state.ClassText.length < 6) {
-            this.refs.toast.show("密码长度不小于 6 位", DURATION.LENGTH_LONG);
+        if (this.state.PswText.length < 6) {
+            this.refs.toast.show("密码长度不小于 6 位", DURATION.LENGTH_SHORT);
             return
         }
         let _registerSuceess = () => {
@@ -103,10 +107,25 @@ export default class RegisterPage extends Component {
 
         let personalInfo = {
             mobile: this.state.IdText,
-            password: this.state.ClassText
+            password: this.state.PswText
         };
 
-        RealmOperation.register(personalInfo, _registerSuceess, _registerFaliled);
+        if (this.state.Selected == "student") {
+            let {navigator} = this.props;
+            navigator.push({
+                name: "StudentMain",
+                component: StudentMain,
+                config: Navigator.SceneConfigs.PushFromRight
+            })
+        } else {
+            let {navigator} = this.props;
+            navigator.push({
+                name: "TeacherMain",
+                component: TeacherMain,
+                config: Navigator.SceneConfigs.PushFromRight
+            })
+        }
+
     };
 
     _onLoginBtnClick = () => {
@@ -119,7 +138,7 @@ export default class RegisterPage extends Component {
     };
 
     _onPswChange = (text) => {
-        this.setState({ClassText: text});
+        this.setState({PswText: text});
     };
 
     _onVerificationChange = (text) => {
@@ -127,8 +146,7 @@ export default class RegisterPage extends Component {
     };
 
     _onValueChange = (value) => {
-      this.setState({selected:value});
-
+        this.setState({Selected:value});
     };
 }
 
